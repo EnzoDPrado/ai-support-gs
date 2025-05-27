@@ -2,7 +2,7 @@ package entities;
 
 import java.util.UUID;
 
-public class Morador {
+public class User {
     private UUID id;
     private String nome;
     private String cpf;
@@ -12,7 +12,7 @@ public class Morador {
     private String longitude;
 
 
-    public Morador(String nome, String cpf, String email, String telefone, String latitude, String longitude) {
+    public User(String nome, String cpf, String email, String telefone, String latitude, String longitude) {
         this.id = UUID.randomUUID();
         this.nome = nome;
         this.cpf = cpf;
@@ -80,7 +80,7 @@ public class Morador {
 
     @Override
     public String toString() {
-        return "Morador {" +
+        return "User {" +
                 "id='" + id + '\'' +
                 "nome='" + nome + '\'' +
                 ", cpf='" + cpf + '\'' +

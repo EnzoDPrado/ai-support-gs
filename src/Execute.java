@@ -1,4 +1,4 @@
-import controllers.MoradorController;
+import controllers.UserController;
 
 import java.util.List;
 import java.util.Scanner;
@@ -39,7 +39,7 @@ public class Execute {
         List<Integer> validOptions = List.of(1, 2, 3, 4);
         while(true){
             System.out.println("--- FLUXO DE LISTAGEM ---");
-            System.out.println("1 -- moradores");
+            System.out.println("1 -- users");
             System.out.println("2 -- refugios");
             System.out.println("3 -- cidades");
             System.out.println("4 -- voltar");
@@ -49,7 +49,7 @@ public class Execute {
 
             switch (value){
                 case 1:
-                    MoradorController.listarMoradores();
+                    UserController.listarUsers();
                     break;
                 case 4: return;
             }
@@ -61,7 +61,7 @@ public class Execute {
         List<Integer> validOptions = List.of(1, 2, 3, 4);
         while(true){
             System.out.println("--- FLUXO DE CRIAÇÃO ---");
-            System.out.println("1 -- moradores");
+            System.out.println("1 -- users");
             System.out.println("2 -- refugios");
             System.out.println("3 -- cidades");
             System.out.println("4 -- voltar");
@@ -71,7 +71,7 @@ public class Execute {
 
             switch (value){
                 case 1:
-                    MoradorController.adicionarMorador();
+                    UserController.adicionarUser();
                     break;
                 case 4: return;
             }
@@ -83,7 +83,7 @@ public class Execute {
         List<Integer> validOptions = List.of(1, 2, 3, 4);
         while(true){
             System.out.println("--- FLUXO DE ATUALIZAÇÃO ---");
-            System.out.println("1 -- moradores");
+            System.out.println("1 -- users");
             System.out.println("2 -- refugios");
             System.out.println("3 -- cidades");
             System.out.println("4 -- voltar");
@@ -93,7 +93,7 @@ public class Execute {
 
             switch (value){
                 case 1:
-                    MoradorController.atualizarMorador();
+                    UserController.atualizarUser();
                     break;
                 case 4: return;
             }
