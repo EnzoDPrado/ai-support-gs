@@ -51,8 +51,10 @@ public class UserController {
         System.out.println("Digite o id do User: ");
         String id = scanner.nextLine();
 
-        User morador = UserController.users.stream()
-                .filter(m -> m.getId().equals(id.trim()))
+        UUID uuid = UUID.fromString(id.trim());
+
+        User user = UserController.users.stream()
+                .filter(m -> m.getId().equals(uuid))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("User inválido"));
 
@@ -65,9 +67,9 @@ public class UserController {
         System.out.println("Digite o telefone do User: ");
         String telefone = scanner.nextLine();
 
-        morador.setNome(nome);
-        morador.setCpf(cpf);
-        morador.setEmail(email);
-        morador.setTelefone(telefone);
+        user.setNome(nome);
+        user.setCpf(cpf);
+        user.setEmail(email);
+        user.setTelefone(telefone);
     }
 }

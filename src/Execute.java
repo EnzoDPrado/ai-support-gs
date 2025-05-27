@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Execute {
     public void execute() {
         Scanner scanner = new Scanner(System.in);
-        List<Integer> validOptions = List.of(1, 2, 3);
+        List<Integer> validOptions = List.of(1, 2, 3, 4);
 
         while (true) {
             System.out.println("1 -- listagens");
@@ -26,7 +26,9 @@ public class Execute {
                     case 3:
                         this.updateFlux();
                         break;
-                    case 4: return;
+                    case 4:
+                        System.out.println("Encerrando aplicação");
+                        return;
                 }
             }catch (Exception e){
                 System.out.println("Opção inválida. Tente novamente.");
