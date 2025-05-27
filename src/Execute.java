@@ -1,4 +1,6 @@
+import controllers.CidadeController;
 import controllers.UserController;
+import entities.Cidade;
 
 import java.util.List;
 import java.util.Scanner;
@@ -62,6 +64,9 @@ public class Execute {
                     case 1:
                         UserController.deletarUser();
                         break;
+                    case 3:
+                        CidadeController.deletarCidade();
+                        break;
                     case 4: return;
                 }
             }catch (Exception e){
@@ -88,6 +93,9 @@ public class Execute {
                     case 1:
                         UserController.buscarUser();
                         break;
+                    case 3:
+                        CidadeController.listarCidadePorId();
+                        break;
                     case 4: return;
                 }
             }catch (Exception e){
@@ -113,6 +121,9 @@ public class Execute {
                     case 1:
                         UserController.listarUsers();
                         break;
+                    case 3:
+                        CidadeController.listarCidades();
+                        break;
                     case 4: return;
                 }
             }catch (Exception e){
@@ -126,9 +137,9 @@ public class Execute {
         List<Integer> validOptions = List.of(1, 2, 3, 4);
         while(true){
             System.out.println("--- FLUXO DE CRIAÇÃO ---");
-            System.out.println("1 -- users");
-            System.out.println("2 -- refugios");
-            System.out.println("3 -- cidades");
+            System.out.println("1 -- user");
+            System.out.println("2 -- refugio");
+            System.out.println("3 -- cidade");
             System.out.println("4 -- voltar");
 
             try{
@@ -139,6 +150,8 @@ public class Execute {
                     case 1:
                         UserController.adicionarUser();
                         break;
+                    case 3:
+                        CidadeController.criarCidade();
                     case 4: return;
                 }
             }catch (Exception e){
@@ -164,6 +177,9 @@ public class Execute {
                 switch (value){
                     case 1:
                         UserController.atualizarUser();
+                        break;
+                    case 3:
+                        CidadeController.atualizarCidade();
                         break;
                     case 4: return;
                 }

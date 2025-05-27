@@ -8,12 +8,12 @@ public class Cidade {
     private UUID id;
     private String nome;
     private String estado;
-    private double latitude;
-    private double longitude;
+    private String latitude;
+    private String longitude;
 
     private List<User> users = new ArrayList<>();
 
-    public Cidade(UUID id, String nome, String estado, double latitude, double longitude, List<User> users) {
+    public Cidade(UUID id, String nome, String estado, String latitude, String longitude, List<User> users) {
         this.id = id;
         this.nome = nome;
         this.estado = estado;
@@ -46,19 +46,19 @@ public class Cidade {
         this.estado = estado;
     }
 
-    public double getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
 
-    public double getLongitude() {
+    public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 
