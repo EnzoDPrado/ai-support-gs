@@ -29,7 +29,7 @@ public class Execute {
                     case 4: return;
                 }
             }catch (Exception e){
-                throw new RuntimeException(e);
+                System.out.println("Opção inválida. Tente novamente.");
             }
         }
     }
@@ -44,14 +44,18 @@ public class Execute {
             System.out.println("3 -- cidades");
             System.out.println("4 -- voltar");
 
-            Integer value = Integer.valueOf(scanner.nextLine());
-            this.validateOptions(validOptions, value);
+            try{
+                Integer value = Integer.valueOf(scanner.nextLine());
+                this.validateOptions(validOptions, value);
 
-            switch (value){
-                case 1:
-                    UserController.listarUsers();
-                    break;
-                case 4: return;
+                switch (value){
+                    case 1:
+                        UserController.listarUsers();
+                        break;
+                    case 4: return;
+                }
+            }catch (Exception e){
+                System.out.println("Opção inválida. Tente novamente.");
             }
         }
     }
@@ -66,14 +70,18 @@ public class Execute {
             System.out.println("3 -- cidades");
             System.out.println("4 -- voltar");
 
-            Integer value = Integer.valueOf(scanner.nextLine());
-            this.validateOptions(validOptions, value);
+            try{
+                Integer value = Integer.valueOf(scanner.nextLine());
+                this.validateOptions(validOptions, value);
 
-            switch (value){
-                case 1:
-                    UserController.adicionarUser();
-                    break;
-                case 4: return;
+                switch (value){
+                    case 1:
+                        UserController.adicionarUser();
+                        break;
+                    case 4: return;
+                }
+            }catch (Exception e){
+                System.out.println("Opção inválida. Tente novamente.");
             }
         }
     }
@@ -88,14 +96,18 @@ public class Execute {
             System.out.println("3 -- cidades");
             System.out.println("4 -- voltar");
 
-            Integer value = Integer.valueOf(scanner.nextLine());
-            this.validateOptions(validOptions, value);
+            try{
+                Integer value = Integer.valueOf(scanner.nextLine());
+                this.validateOptions(validOptions, value);
 
-            switch (value){
-                case 1:
-                    UserController.atualizarUser();
-                    break;
-                case 4: return;
+                switch (value){
+                    case 1:
+                        UserController.atualizarUser();
+                        break;
+                    case 4: return;
+                }
+            }catch (Exception e){
+                System.out.println("Opção inválida. Tente novamente.");
             }
         }
     }
