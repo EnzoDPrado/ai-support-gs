@@ -5,14 +5,15 @@ import java.util.Scanner;
 public class Execute {
     public void execute() {
         Scanner scanner = new Scanner(System.in);
-        List<Integer> validOptions = List.of(1, 2, 3, 4, 5);
+        List<Integer> validOptions = List.of(1, 2, 3, 4, 5, 6);
 
         while (true) {
             System.out.println("1 -- listagens");
             System.out.println("2 -- cadastros");
             System.out.println("3 -- atualizar");
             System.out.println("4 -- buscar um");
-            System.out.println("5 -- sair");
+            System.out.println("5 -- deletar um");
+            System.out.println("6 -- sair");
             try{
                 Integer value = Integer.valueOf(scanner.nextLine());
                 this.validateOptions(validOptions, value);
@@ -31,8 +32,37 @@ public class Execute {
                         this.listOneFlux();
                         break;
                     case 5:
+                        this.deleteOneFlux();
+                        break;
+                    case 6:
                         System.out.println("Encerrando aplicação");
                         return;
+                }
+            }catch (Exception e){
+                System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+    }
+
+    private void deleteOneFlux(){
+        Scanner scanner = new Scanner(System.in);
+        List<Integer> validOptions = List.of(1, 2, 3, 4);
+        while(true){
+            System.out.println("--- FLUXO DE DELETAR UM ---");
+            System.out.println("1 -- user");
+            System.out.println("2 -- refugio");
+            System.out.println("3 -- cidade");
+            System.out.println("4 -- voltar");
+
+            try{
+                Integer value = Integer.valueOf(scanner.nextLine());
+                this.validateOptions(validOptions, value);
+
+                switch (value){
+                    case 1:
+                        UserController.deletarUser();
+                        break;
+                    case 4: return;
                 }
             }catch (Exception e){
                 System.out.println("Opção inválida. Tente novamente.");
