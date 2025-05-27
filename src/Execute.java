@@ -5,13 +5,14 @@ import java.util.Scanner;
 public class Execute {
     public void execute() {
         Scanner scanner = new Scanner(System.in);
-        List<Integer> validOptions = List.of(1, 2, 3, 4);
+        List<Integer> validOptions = List.of(1, 2, 3, 4, 5);
 
         while (true) {
             System.out.println("1 -- listagens");
             System.out.println("2 -- cadastros");
             System.out.println("3 -- atualizar");
-            System.out.println("4 -- sair");
+            System.out.println("4 -- buscar um");
+            System.out.println("5 -- sair");
             try{
                 Integer value = Integer.valueOf(scanner.nextLine());
                 this.validateOptions(validOptions, value);
@@ -27,6 +28,9 @@ public class Execute {
                         this.updateFlux();
                         break;
                     case 4:
+                        this.listOneFlux();
+                        break;
+                    case 5:
                         System.out.println("Encerrando aplicação");
                         return;
                 }
@@ -36,6 +40,31 @@ public class Execute {
         }
     }
 
+    private void listOneFlux(){
+        Scanner scanner = new Scanner(System.in);
+        List<Integer> validOptions = List.of(1, 2, 3, 4);
+        while(true){
+            System.out.println("--- FLUXO DE BUSCAR UM ---");
+            System.out.println("1 -- user");
+            System.out.println("2 -- refugio");
+            System.out.println("3 -- cidade");
+            System.out.println("4 -- voltar");
+
+            try{
+                Integer value = Integer.valueOf(scanner.nextLine());
+                this.validateOptions(validOptions, value);
+
+                switch (value){
+                    case 1:
+                        UserController.buscarUser();
+                        break;
+                    case 4: return;
+                }
+            }catch (Exception e){
+                System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+    }
     private void listFlux(){
         Scanner scanner = new Scanner(System.in);
         List<Integer> validOptions = List.of(1, 2, 3, 4);

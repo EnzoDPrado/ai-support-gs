@@ -44,6 +44,21 @@ public class UserController {
 
         users.add(novoUser);
     }
+    public static void buscarUser(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Digite o id do User: ");
+        String id = scanner.nextLine();
+
+        UUID uuid = UUID.fromString(id.trim());
+
+        User user = UserController.users.stream()
+                .filter(m -> m.getId().equals(uuid))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("User inválido"));
+
+        System.out.println(user.toString());
+    }
 
     public static void atualizarUser(){
         Scanner scanner = new Scanner(System.in);
