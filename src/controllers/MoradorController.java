@@ -51,9 +51,10 @@ public class MoradorController {
         System.out.println("Digite o id do Morador: ");
         String id = scanner.nextLine();
 
-        Morador morador = MoradorController.moradores.stream().filter(m -> m.getId().equals(id)).findFirst().get();
-
-        if(morador == null) throw new Error("Morador invalido");
+        Morador morador = MoradorController.moradores.stream()
+                .filter(m -> m.getId().equals(id.trim()))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Morador inválido"));
 
         System.out.println("Digite o nome do Morador: ");
         String nome = scanner.nextLine();

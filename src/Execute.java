@@ -10,7 +10,8 @@ public class Execute {
         while (true) {
             System.out.println("1 -- listagens");
             System.out.println("2 -- cadastros");
-            System.out.println("3 -- sair");
+            System.out.println("3 -- atualizar");
+            System.out.println("4 -- sair");
             try{
                 Integer value = Integer.valueOf(scanner.nextLine());
                 this.validateOptions(validOptions, value);
@@ -22,7 +23,10 @@ public class Execute {
                     case 2:
                         this.createFlux();
                         break;
-                    case 3: return;
+                    case 3:
+                        this.updateFlux();
+                        break;
+                    case 4: return;
                 }
             }catch (Exception e){
                 throw new RuntimeException(e);
@@ -89,7 +93,7 @@ public class Execute {
 
             switch (value){
                 case 1:
-                    MoradorController.adicionarMorador();
+                    MoradorController.atualizarMorador();
                     break;
                 case 4: return;
             }
