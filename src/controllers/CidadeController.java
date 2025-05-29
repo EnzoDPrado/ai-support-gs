@@ -12,7 +12,6 @@ public class CidadeController {
     private CidadeController() {
     }
 
-    // Criar uma nova cidade
     public static void criarCidade() {
         Scanner scanner = new Scanner(System.in);
 

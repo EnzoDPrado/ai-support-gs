@@ -12,6 +12,7 @@ public class Cidade {
     private String longitude;
 
     private List<User> users = new ArrayList<>();
+    private List<Refugio> refugios = new ArrayList<>();
 
     public Cidade(UUID id, String nome, String estado, String latitude, String longitude, List<User> users) {
         this.id = id;
@@ -20,6 +21,14 @@ public class Cidade {
         this.latitude = latitude;
         this.longitude = longitude;
         this.users = users;
+    }
+
+    public List<Refugio> getRefugios() {
+        return refugios;
+    }
+
+    public void setRefugios(List<Refugio> refugios) {
+        this.refugios = refugios;
     }
 
     public UUID getId() {

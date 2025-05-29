@@ -1,4 +1,5 @@
 import controllers.CidadeController;
+import controllers.RefugioController;
 import controllers.UserController;
 import entities.Cidade;
 
@@ -64,10 +65,14 @@ public class Execute {
                     case 1:
                         UserController.deletarUser();
                         break;
+                    case 2:
+                        RefugioController.deletarRefugio();
+                        break;
                     case 3:
                         CidadeController.deletarCidade();
                         break;
-                    case 4: return;
+                    case 4:
+                        return;
                 }
             }catch (Exception e){
                 System.out.println("Opção inválida. Tente novamente.");
@@ -93,16 +98,21 @@ public class Execute {
                     case 1:
                         UserController.buscarUser();
                         break;
+                    case 2:
+                        RefugioController.buscarRefugio();
+                        break;
                     case 3:
                         CidadeController.listarCidadePorId();
                         break;
-                    case 4: return;
+                    case 4:
+                        return;
                 }
             }catch (Exception e){
                 System.out.println("Opção inválida. Tente novamente.");
             }
         }
     }
+
     private void listFlux(){
         Scanner scanner = new Scanner(System.in);
         List<Integer> validOptions = List.of(1, 2, 3, 4);
@@ -121,10 +131,14 @@ public class Execute {
                     case 1:
                         UserController.listarUsers();
                         break;
+                    case 2:
+                        RefugioController.listarRefugios();
+                        break;
                     case 3:
                         CidadeController.listarCidades();
                         break;
-                    case 4: return;
+                    case 4:
+                        return;
                 }
             }catch (Exception e){
                 System.out.println("Opção inválida. Tente novamente.");
@@ -150,9 +164,14 @@ public class Execute {
                     case 1:
                         UserController.adicionarUser();
                         break;
+                    case 2:
+                        RefugioController.adicionarRefugio();
+                        break;
                     case 3:
                         CidadeController.criarCidade();
-                    case 4: return;
+                        break;
+                    case 4:
+                        return;
                 }
             }catch (Exception e){
                 System.out.println("Opção inválida. Tente novamente.");
@@ -178,16 +197,21 @@ public class Execute {
                     case 1:
                         UserController.atualizarUser();
                         break;
+                    case 2:
+                        RefugioController.atualizarRefugio();
+                        break;
                     case 3:
                         CidadeController.atualizarCidade();
                         break;
-                    case 4: return;
+                    case 4:
+                        return;
                 }
             }catch (Exception e){
                 System.out.println("Opção inválida. Tente novamente.");
             }
         }
     }
+
 
     private void validateOptions(List<Integer> options, Integer value){
         try{
