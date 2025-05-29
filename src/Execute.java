@@ -1,3 +1,4 @@
+import controllers.AlertaController;
 import controllers.CidadeController;
 import controllers.RefugioController;
 import controllers.UserController;
@@ -49,13 +50,14 @@ public class Execute {
 
     private void deleteOneFlux(){
         Scanner scanner = new Scanner(System.in);
-        List<Integer> validOptions = List.of(1, 2, 3, 4);
+        List<Integer> validOptions = List.of(1, 2, 3, 4, 5);
         while(true){
             System.out.println("--- FLUXO DE DELETAR UM ---");
             System.out.println("1 -- user");
             System.out.println("2 -- refugio");
             System.out.println("3 -- cidade");
-            System.out.println("4 -- voltar");
+            System.out.println("4 -- alerta");
+            System.out.println("5 -- voltar");
 
             try{
                 Integer value = Integer.valueOf(scanner.nextLine());
@@ -72,6 +74,9 @@ public class Execute {
                         CidadeController.deletarCidade();
                         break;
                     case 4:
+                        AlertaController.deletarAlerta();
+                        break;
+                    case 5:
                         return;
                 }
             }catch (Exception e){
@@ -82,13 +87,14 @@ public class Execute {
 
     private void listOneFlux(){
         Scanner scanner = new Scanner(System.in);
-        List<Integer> validOptions = List.of(1, 2, 3, 4);
+        List<Integer> validOptions = List.of(1, 2, 3, 4, 5);
         while(true){
             System.out.println("--- FLUXO DE BUSCAR UM ---");
             System.out.println("1 -- user");
             System.out.println("2 -- refugio");
             System.out.println("3 -- cidade");
-            System.out.println("4 -- voltar");
+            System.out.println("4 -- alerta");
+            System.out.println("5 -- voltar");
 
             try{
                 Integer value = Integer.valueOf(scanner.nextLine());
@@ -105,6 +111,9 @@ public class Execute {
                         CidadeController.listarCidadePorId();
                         break;
                     case 4:
+                        AlertaController.buscarAlerta();
+                        break;
+                    case 5:
                         return;
                 }
             }catch (Exception e){
@@ -115,13 +124,14 @@ public class Execute {
 
     private void listFlux(){
         Scanner scanner = new Scanner(System.in);
-        List<Integer> validOptions = List.of(1, 2, 3, 4);
+        List<Integer> validOptions = List.of(1, 2, 3, 4, 5);
         while(true){
             System.out.println("--- FLUXO DE LISTAGEM ---");
             System.out.println("1 -- users");
             System.out.println("2 -- refugios");
             System.out.println("3 -- cidades");
-            System.out.println("4 -- voltar");
+            System.out.println("4 -- alertas");
+            System.out.println("5 -- voltar");
 
             try{
                 Integer value = Integer.valueOf(scanner.nextLine());
@@ -138,6 +148,9 @@ public class Execute {
                         CidadeController.listarCidades();
                         break;
                     case 4:
+                        AlertaController.listarAlertas();
+                        break;
+                    case 5:
                         return;
                 }
             }catch (Exception e){
@@ -148,13 +161,14 @@ public class Execute {
 
     private void createFlux(){
         Scanner scanner = new Scanner(System.in);
-        List<Integer> validOptions = List.of(1, 2, 3, 4);
+        List<Integer> validOptions = List.of(1, 2, 3, 4, 5);
         while(true){
             System.out.println("--- FLUXO DE CRIAÇÃO ---");
             System.out.println("1 -- user");
             System.out.println("2 -- refugio");
             System.out.println("3 -- cidade");
-            System.out.println("4 -- voltar");
+            System.out.println("4 -- alerta");
+            System.out.println("5 -- voltar");
 
             try{
                 Integer value = Integer.valueOf(scanner.nextLine());
@@ -171,6 +185,9 @@ public class Execute {
                         CidadeController.criarCidade();
                         break;
                     case 4:
+                        AlertaController.adicionarAlerta();
+                        break;
+                    case 5:
                         return;
                 }
             }catch (Exception e){
@@ -181,13 +198,14 @@ public class Execute {
 
     private void updateFlux(){
         Scanner scanner = new Scanner(System.in);
-        List<Integer> validOptions = List.of(1, 2, 3, 4);
+        List<Integer> validOptions = List.of(1, 2, 3, 4, 5);
         while(true){
             System.out.println("--- FLUXO DE ATUALIZAÇÃO ---");
             System.out.println("1 -- users");
             System.out.println("2 -- refugios");
             System.out.println("3 -- cidades");
-            System.out.println("4 -- voltar");
+            System.out.println("4 -- alertas");
+            System.out.println("5 -- voltar");
 
             try{
                 Integer value = Integer.valueOf(scanner.nextLine());
@@ -204,6 +222,9 @@ public class Execute {
                         CidadeController.atualizarCidade();
                         break;
                     case 4:
+                        AlertaController.atualizarAlerta();
+                        break;
+                    case 5:
                         return;
                 }
             }catch (Exception e){
@@ -211,6 +232,7 @@ public class Execute {
             }
         }
     }
+
 
 
     private void validateOptions(List<Integer> options, Integer value){
