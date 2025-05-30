@@ -243,7 +243,7 @@ public class Execute {
         try{
             if(!options.contains(value)) throw new Error("Valor invalido");
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.out.println("Opção inválida. Tente novamente.");
         }
     }
 }

@@ -29,11 +29,13 @@ public class AlertaController {
         System.out.println("Digite o motivo do alerta:");
         String motivo = scanner.nextLine();
 
+        Cidade cidade = CidadeController.listarCidadePorIdERetornar();
 
         Alerta novoAlerta = new Alerta(
                 UUID.randomUUID(),
                 descricao,
-                motivo
+                motivo,
+                cidade
         );
 
         alertas.add(novoAlerta);
@@ -92,8 +94,11 @@ public class AlertaController {
         System.out.println("Digite o novo motivo:");
         String motivo = scanner.nextLine();
 
+        Cidade cidade = CidadeController.listarCidadePorIdERetornar();
+
         alerta.setDescricao(descricao);
         alerta.setMotivo(motivo);
+        alerta.setCidade(cidade);
 
         System.out.println("Alerta atualizado com sucesso!");
     }

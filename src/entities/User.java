@@ -99,7 +99,7 @@ public class User {
                 ", telefone='" + telefone + '\'' +
                 ", latitude='" + latitude + '\'' +
                 ", longitude='" + longitude + '\'' +
-                ", cidade='" + cidade.getNome() + '\'' +
+                ", cidade=" + (cidade != null ? cidade.getNome() : "Não atribuída") + '\'' +
                 '}';
     }
 }

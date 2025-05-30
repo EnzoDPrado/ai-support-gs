@@ -8,10 +8,11 @@ public class Alerta {
     private String descricao;
     private String motivo ;
 
-    public Alerta(UUID id, String descricao, String motivo) {
+    public Alerta(UUID id, String descricao, String motivo, Cidade cidade) {
         this.id = id;
         this.descricao = descricao;
         this.motivo = motivo;
+        this.cidade = cidade;
     }
 
     @Override
@@ -20,7 +21,7 @@ public class Alerta {
                 "id=" + id +
                 ", descricao='" + descricao + '\'' +
                 ", motivo='" + motivo + '\'' +
-                ", cidade=" + (cidade != null ? cidade.toString() : "Não atribuída") +
+                ", cidade=" + (cidade != null ? cidade.getNome() : "Não atribuída") +
                 '}';
     }
 
