@@ -10,12 +10,13 @@ public class Refugio {
     private String latitude;
     private String longitude;
 
-    public Refugio(UUID id, String nome, String referencia, String latitude, String longitude) {
+    public Refugio(UUID id, String nome, String referencia, String latitude, String longitude, Cidade cidade) {
         this.id = id;
         this.nome = nome;
         this.referencia = referencia;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.cidade = cidade;
     }
 
     @Override
@@ -24,7 +25,7 @@ public class Refugio {
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", referencia='" + referencia + '\'' +
-                ", cidade=" + (cidade != null ? cidade.toString() : "null") +
+                ", cidade=" + (cidade != null ? cidade.getNome() : "null") +
                 ", latitude='" + latitude + '\'' +
                 ", longitude='" + longitude + '\'' +
                 '}';

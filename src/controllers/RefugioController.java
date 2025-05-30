@@ -30,12 +30,15 @@ public class RefugioController {
         System.out.println("Digite a referência do Refugio: ");
         String referencia = scanner.nextLine();
 
+        Cidade cidade = CidadeController.listarCidadePorIdERetornar();
+
         Refugio novoRefugio = new Refugio(
                 UUID.randomUUID(),
                 nome,
                 referencia,
                 String.valueOf(r.nextInt(400) + 100),
-                String.valueOf(r.nextInt(400) + 100)
+                String.valueOf(r.nextInt(400) + 100),
+                cidade
         );
 
         refugios.add(novoRefugio);
@@ -93,8 +96,11 @@ public class RefugioController {
         System.out.println("Digite a nova referência do Refugio: ");
         String referencia = scanner.nextLine();
 
+        Cidade cidade = CidadeController.listarCidadePorIdERetornar();
+
         refugio.setNome(nome);
         refugio.setReferencia(referencia);
+        refugio.setCidade(cidade);
 
         System.out.println("Refúgio atualizado com sucesso!");
     }
