@@ -36,10 +36,15 @@ public class CidadeController {
         System.out.println("Cidade criada com sucesso!");
     }
 
-    // Listar cidades
     public static void listarCidades() {
-        cidades.forEach(c -> {
-            System.out.println("ID: " + c.getId() + " | Nome: " + c.getNome() + " - " + c.getEstado());
+        cidades.forEach(cidade -> {
+            System.out.println(cidade.toString());
+        });
+    }
+
+    public static void listarCidadesSimples() {
+        cidades.forEach(cidade -> {
+            System.out.println(cidade.toStringSimple());
         });
     }
 
@@ -122,14 +127,6 @@ public class CidadeController {
             System.out.println("ID inválido ou cidade não encontrada.");
         }
     }
-    // Buscar cidade por ID
-    private static Cidade buscarCidadePorId(UUID id) {
-        return cidades.stream()
-                .filter(c -> c.getId().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Cidade não encontrada."));
-    }
-
     public static void deletarCidade() {
         Scanner scanner = new Scanner(System.in);
 
@@ -145,90 +142,5 @@ public class CidadeController {
 
         cidades.remove(cidade);
         System.out.println("Cidade removida com sucesso.");
-    }
-
-    // Listar usuários de uma cidade
-    public static void listarUsersDaCidade() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("ID da cidade: ");
-        UUID cidadeId = UUID.fromString(scanner.nextLine());
-
-        Cidade cidade = buscarCidadePorId(cidadeId);
-
-        List<String> users = cidade.getUsers()
-                .stream()
-                .map(User::toString)
-                .collect(Collectors.toList());
-
-        System.out.println(users);
-    }
-
-    // Buscar um usuário de uma cidade
-    public static void buscarUserNaCidade() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("ID da cidade: ");
-        UUID cidadeId = UUID.fromString(scanner.nextLine());
-
-        Cidade cidade = buscarCidadePorId(cidadeId);
-
-        System.out.println("ID do usuário: ");
-        UUID userId = UUID.fromString(scanner.nextLine());
-
-        User user = cidade.getUsers().stream()
-                .filter(u -> u.getId().equals(userId))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado."));
-
-        System.out.println(user.toString());
-    }
-
-    // Atualizar usuário de uma cidade
-    public static void atualizarUserNaCidade() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("ID da cidade: ");
-        UUID cidadeId = UUID.fromString(scanner.nextLine());
-
-        Cidade cidade = buscarCidadePorId(cidadeId);
-
-        System.out.println("ID do usuário: ");
-        UUID userId = UUID.fromString(scanner.nextLine());
-
-        User user = cidade.getUsers().stream()
-                .filter(u -> u.getId().equals(userId))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado."));
-
-        System.out.println("Novo nome: ");
-        user.setNome(scanner.nextLine());
-
-        System.out.println("Novo CPF: ");
-        user.setCpf(scanner.nextLine());
-
-        System.out.println("Novo email: ");
-        user.setEmail(scanner.nextLine());
-
-        System.out.println("Novo telefone: ");
-        user.setTelefone(scanner.nextLine());
-
-        System.out.println("Usuário atualizado com sucesso.");
-    }
-
-    // Deletar usuário da cidade
-    public static void deletarUserDaCidade() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("ID da cidade: ");
-        UUID cidadeId = UUID.fromString(scanner.nextLine());
-
-        Cidade cidade = buscarCidadePorId(cidadeId);
-
-        System.out.println("ID do usuário: ");
-        UUID userId = UUID.fromString(scanner.nextLine());
-
-        cidade.getUsers().removeIf(u -> u.getId().equals(userId));
-        System.out.println("Usuário removido com sucesso.");
     }
 }

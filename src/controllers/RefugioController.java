@@ -22,6 +22,10 @@ public class RefugioController {
     }
 
     public static void adicionarRefugio() {
+        System.out.println("--- CIDADES DISPONIVEIS ---");
+        CidadeController.listarCidadesSimples();
+        System.out.println("--------------------------");
+
         Random r = new Random();
         Scanner scanner = new Scanner(System.in);
 
@@ -42,6 +46,8 @@ public class RefugioController {
         );
 
         refugios.add(novoRefugio);
+        cidade.getRefugios().add(novoRefugio);
+
         System.out.println("Refúgio adicionado com sucesso!");
     }
 
@@ -79,6 +85,10 @@ public class RefugioController {
     }
 
     public static void atualizarRefugio() {
+        System.out.println("--- CIDADES DISPONIVEIS ---");
+        CidadeController.listarCidadesSimples();
+        System.out.println("--------------------------");
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Digite o id do Refugio: ");
@@ -98,9 +108,13 @@ public class RefugioController {
 
         Cidade cidade = CidadeController.listarCidadePorIdERetornar();
 
+        Cidade cidadeAtual = refugio.getCidade();
+        cidadeAtual.getRefugios().remove(refugio);
+
         refugio.setNome(nome);
         refugio.setReferencia(referencia);
         refugio.setCidade(cidade);
+        cidade.getRefugios().add(refugio);
 
         System.out.println("Refúgio atualizado com sucesso!");
     }

@@ -22,6 +22,10 @@ public class UserController {
     }
 
     public static void adicionarUser(){
+        System.out.println("--- CIDADES DISPONIVEIS ---");
+        CidadeController.listarCidadesSimples();
+        System.out.println("--------------------------");
+
         Random r = new Random();
 
         Scanner scanner = new Scanner(System.in);
@@ -45,6 +49,8 @@ public class UserController {
                 String.valueOf(r.nextInt(400) + 100),
                 cidade
         );
+
+        cidade.getUsers().add(novoUser);
 
         users.add(novoUser);
     }
@@ -84,6 +90,10 @@ public class UserController {
     }
 
     public static void atualizarUser(){
+        System.out.println("--- CIDADES DISPONIVEIS ---");
+        CidadeController.listarCidadesSimples();
+        System.out.println("--------------------------");
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Digite o id do User: ");
@@ -106,10 +116,16 @@ public class UserController {
         String telefone = scanner.nextLine();
         Cidade cidade = CidadeController.listarCidadePorIdERetornar();
 
+        Cidade cidadeAtual = user.getCidade();
+        cidadeAtual.getUsers().remove(user);
+
         user.setNome(nome);
         user.setCpf(cpf);
         user.setEmail(email);
         user.setTelefone(telefone);
         user.setCidade(cidade);
+        cidade.getUsers().add(user);
+
+
     }
 }

@@ -21,6 +21,10 @@ public class AlertaController {
     }
 
     public static void adicionarAlerta() {
+        System.out.println("--- CIDADES DISPONIVEIS ---");
+        CidadeController.listarCidadesSimples();
+        System.out.println("--------------------------");
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Digite a descrição do alerta:");
@@ -39,6 +43,7 @@ public class AlertaController {
         );
 
         alertas.add(novoAlerta);
+        cidade.getAlertas().add(novoAlerta);
         System.out.println("Alerta criado com sucesso!");
     }
 
@@ -76,6 +81,10 @@ public class AlertaController {
     }
 
     public static void atualizarAlerta() {
+        System.out.println("--- CIDADES DISPONIVEIS ---");
+        CidadeController.listarCidadesSimples();
+        System.out.println("--------------------------");
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Digite o ID do alerta:");
@@ -96,9 +105,13 @@ public class AlertaController {
 
         Cidade cidade = CidadeController.listarCidadePorIdERetornar();
 
+        Cidade cidadeAtual = alerta.getCidade();
+        cidadeAtual.getAlertas().remove(alerta);
+
         alerta.setDescricao(descricao);
         alerta.setMotivo(motivo);
         alerta.setCidade(cidade);
+        cidade.getAlertas().add(alerta);
 
         System.out.println("Alerta atualizado com sucesso!");
     }

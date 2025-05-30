@@ -14,6 +14,8 @@ public class Cidade {
     private List<User> users = new ArrayList<>();
     private List<Refugio> refugios = new ArrayList<>();
 
+    private List<Alerta> alertas = new ArrayList<>();
+
     public Cidade(UUID id, String nome, String estado, String latitude, String longitude, List<User> users) {
         this.id = id;
         this.nome = nome;
@@ -21,6 +23,42 @@ public class Cidade {
         this.latitude = latitude;
         this.longitude = longitude;
         this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "Cidade {" +
+                "\n  id=" + id +
+                ",\n  nome='" + nome + '\'' +
+                ",\n  estado='" + estado + '\'' +
+                ",\n  latitude='" + latitude + '\'' +
+                ",\n  longitude='" + longitude + '\'' +
+                ",\n  users=" + users.stream()
+                .map(User::toString)
+                .toList() +
+                ",\n  refugios=" + refugios.stream()
+                .map(Refugio::toString)
+                .toList() +
+                ",\n  alertas=" + alertas.stream()
+                .map(Alerta::toString)
+                .toList() +
+                "\n}";
+    }
+
+    public String toStringSimple() {
+        return "Cidade {" +
+                "\n  id=" + id +
+                ",\n  nome='" + nome + '\'' +
+                ",\n  estado='" + estado + '\'' +
+                "\n}";
+    }
+
+    public List<Alerta> getAlertas() {
+        return alertas;
+    }
+
+    public void setAlertas(List<Alerta> alertas) {
+        this.alertas = alertas;
     }
 
     public List<Refugio> getRefugios() {
