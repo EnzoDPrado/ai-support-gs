@@ -1,5 +1,6 @@
 package controllers;
 
+import entities.Cidade;
 import entities.User;
 
 import java.util.*;
@@ -33,17 +34,21 @@ public class UserController {
         System.out.println("Digite o telefone do User: ");
         String telefone = scanner.nextLine();
 
+        Cidade cidade = CidadeController.listarCidadePorIdERetornar();
+
         User novoUser = new User(
                 nome,
                 cpf,
                 email,
                 telefone,
                 String.valueOf(r.nextInt(400) + 100),
-                String.valueOf(r.nextInt(400) + 100)
+                String.valueOf(r.nextInt(400) + 100),
+                cidade
         );
 
         users.add(novoUser);
     }
+
     public static void buscarUser(){
         Scanner scanner = new Scanner(System.in);
 
@@ -99,10 +104,12 @@ public class UserController {
         String email = scanner.nextLine();
         System.out.println("Digite o telefone do User: ");
         String telefone = scanner.nextLine();
+        Cidade cidade = CidadeController.listarCidadePorIdERetornar();
 
         user.setNome(nome);
         user.setCpf(cpf);
         user.setEmail(email);
         user.setTelefone(telefone);
+        user.setCidade(cidade);
     }
 }

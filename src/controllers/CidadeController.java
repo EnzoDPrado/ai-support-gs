@@ -64,6 +64,27 @@ public class CidadeController {
         }
     }
 
+    public static Cidade listarCidadePorIdERetornar() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Digite o ID da cidade:");
+        String idStr = scanner.nextLine();
+
+        try {
+            UUID cidadeId = UUID.fromString(idStr.trim());
+
+            Cidade cidade = cidades.stream()
+                    .filter(c -> c.getId().equals(cidadeId))
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("Cidade não encontrada."));
+
+            return cidade;
+        } catch (IllegalArgumentException e) {
+            System.out.println("ID inválido ou cidade não encontrada.");
+        }
+        return null;
+    }
+
     public static void atualizarCidade() {
         Scanner scanner = new Scanner(System.in);
 
@@ -124,40 +145,6 @@ public class CidadeController {
 
         cidades.remove(cidade);
         System.out.println("Cidade removida com sucesso.");
-    }
-
-    // Adicionar usuário à cidade
-    public static void adicionarUserNaCidade() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("ID da cidade: ");
-        UUID cidadeId = UUID.fromString(scanner.nextLine());
-
-        Cidade cidade = buscarCidadePorId(cidadeId);
-
-        System.out.println("Nome do usuário: ");
-        String nome = scanner.nextLine();
-
-        System.out.println("CPF: ");
-        String cpf = scanner.nextLine();
-
-        System.out.println("Email: ");
-        String email = scanner.nextLine();
-
-        System.out.println("Telefone: ");
-        String telefone = scanner.nextLine();
-
-        User novoUser = new User(
-                nome,
-                cpf,
-                email,
-                telefone,
-                String.valueOf(new Random().nextInt(400) + 100),
-                String.valueOf(new Random().nextInt(400) + 100)
-        );
-
-        cidade.getUsers().add(novoUser);
-        System.out.println("Usuário adicionado à cidade com sucesso.");
     }
 
     // Listar usuários de uma cidade

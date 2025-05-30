@@ -11,6 +11,10 @@ public class Execute {
         Scanner scanner = new Scanner(System.in);
         List<Integer> validOptions = List.of(1, 2, 3, 4, 5, 6);
 
+        System.out.println("-------------------------INSTRUÇÕES INICIAIS-------------------------------");
+        System.out.println("--- Crie primeiramente uma cidade para vincular com as demais entidades ---");
+        System.out.println("---------------------------------------------------------------------------");
+
         while (true) {
             System.out.println("1 -- listagens");
             System.out.println("2 -- cadastros");

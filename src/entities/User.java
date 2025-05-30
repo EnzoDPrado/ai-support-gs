@@ -11,8 +11,10 @@ public class User {
     private String latitude;
     private String longitude;
 
+    private Cidade cidade;
 
-    public User(String nome, String cpf, String email, String telefone, String latitude, String longitude) {
+
+    public User(String nome, String cpf, String email, String telefone, String latitude, String longitude, Cidade cidade) {
         this.id = UUID.randomUUID();
         this.nome = nome;
         this.cpf = cpf;
@@ -20,6 +22,15 @@ public class User {
         this.telefone = telefone;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.cidade = cidade;
+    }
+
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
     }
 
     public UUID getId() {
@@ -88,6 +99,7 @@ public class User {
                 ", telefone='" + telefone + '\'' +
                 ", latitude='" + latitude + '\'' +
                 ", longitude='" + longitude + '\'' +
+                ", cidade='" + cidade.getNome() + '\'' +
                 '}';
     }
 }
