@@ -76,7 +76,7 @@ public class OperacaoInvestirDao {
         stm.setLong(1, operacaoInvestir.getInvestidor().getId());
         stm.setString(2, operacaoInvestir.getNomeInvestimento());
         stm.setDouble(3, operacaoInvestir.getValorInvestimentoInicial());
-        stm.setString(4, operacaoInvestir.getAlerta() ? "S" : "N"); // CHAR no banco
+        stm.setString(4, operacaoInvestir.getAlerta() ? "S" : "N");
         stm.setLong(5, operacaoInvestir.getId());
 
         stm.executeUpdate();
