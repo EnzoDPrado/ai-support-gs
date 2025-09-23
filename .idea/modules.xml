@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/safe-location.iml" filepath="$PROJECT_DIR$/safe-location.iml" />
+      <module fileurl="file://$PROJECT_DIR$/patinhas-GUI.iml" filepath="$PROJECT_DIR$/patinhas-GUI.iml" />
     </modules>
   </component>
 </project>
