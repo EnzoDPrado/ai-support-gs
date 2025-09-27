@@ -1,14 +1,14 @@
 package entities;
 
 public class Endereco {
-    private Integer id;
+    private Long id;
     private Investidor investidor;
     private String rua;
     private String numero;
-    private String complemento;
     private String bairro;
+    private String complemento;
 
-    public Endereco(Integer id, Investidor investidor, String rua, String numero, String complemento, String bairro) {
+    public Endereco(Long id, Investidor investidor, String rua, String numero, String complemento, String bairro) {
         this.id = id;
         this.investidor = investidor;
         this.rua = rua;
@@ -38,7 +38,7 @@ public class Endereco {
         this.investidor = investidor;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
