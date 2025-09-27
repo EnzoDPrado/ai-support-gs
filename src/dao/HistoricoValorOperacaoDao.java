@@ -18,7 +18,7 @@ public class HistoricoValorOperacaoDao {
     }
 
     private HistoricoValorOperacao parseHistoricoValorOperacao(ResultSet result) throws SQLException {
-        Long id = result.getLong("cd_investidor");
+        Long id = result.getLong("cd_historico_valor_operacao");
 
         Long operacaoInvestirId = result.getLong("cd_operacao_investir");
         OperacaoInvestir operacaoInvestir = this.operacaoInvestirDao.pesquisar(operacaoInvestirId);
