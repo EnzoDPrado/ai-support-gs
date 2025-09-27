@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class ListarInvestidoresUseCase {
 
-    public static void listarInvestidores() {
+    public static void execute() {
         try {
             System.out.println("=== LISTA DE INVESTIDORES ===");
 

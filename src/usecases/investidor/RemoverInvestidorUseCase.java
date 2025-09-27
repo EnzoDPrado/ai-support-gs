@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class RemoverInvestidorUseCase {
 
-    public static void removerInvestidor() {
+    public static void execute() {
         Scanner scanner = new Scanner(System.in);
 
         try {

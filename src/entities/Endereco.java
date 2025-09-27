@@ -27,7 +27,14 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return "Rua: " + rua + ", Número: " + numero + ", Bairro: " + bairro + ", Complemento: " + complemento;
+        return "Endereco {" +
+                "id=" + id +
+                ", investidorId=" + (investidor != null ? investidor.getId() : null) +
+                ", rua='" + rua + '\'' +
+                ", numero='" + numero + '\'' +
+                ", bairro='" + bairro + '\'' +
+                ", complemento='" + complemento + '\'' +
+                '}';
     }
 
     public Investidor getInvestidor() {

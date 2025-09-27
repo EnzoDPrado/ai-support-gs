@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class PesquisarInvestidorUseCase {
 
-    public static void pesquisarInvestidor() {
+    public static void execute() {
         Scanner scanner = new Scanner(System.in);
 
         try {

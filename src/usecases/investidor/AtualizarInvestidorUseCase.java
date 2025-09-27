@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class AtualizarInvestidorUseCase {
 
-    public static void atualizarInvestidor() {
+    public static void execute() {
         Scanner scanner = new Scanner(System.in);
 
         try {
