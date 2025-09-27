@@ -125,7 +125,5 @@ public class UserController {
         user.setTelefone(telefone);
         user.setCidade(cidade);
         cidade.getUsers().add(user);
-
-
     }
 }

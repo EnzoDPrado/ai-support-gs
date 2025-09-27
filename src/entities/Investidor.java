@@ -52,4 +52,14 @@ public class Investidor {
     public void setDataNasc(Date dataNasc) {
         this.dataNasc = dataNasc;
     }
+
+    @Override
+    public String toString() {
+        return "Investidor {" +
+                "id=" + id +
+                ", cpf='" + cpf + '\'' +
+                ", saldo=" + saldo +
+                ", dataNasc=" + dataNasc +
+                '}';
+    }
 }
