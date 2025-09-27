@@ -19,7 +19,7 @@ public class HistoricoValorSimulacaoDao {
     }
 
     private HistoricoValorSimulacao parseHistoricoValorSimulacao(ResultSet result) throws SQLException {
-        Long id = result.getLong("cd_investidor");
+        Long id = result.getLong("cd_historico_valor_simulacao");
 
         Long simuladorOperacaoInvestirId = result.getLong("cd_simulador_operacao");
         SimuladorOperacaoInvestir simuladorOperacaoInvestir = this.simuladorOperacaoInvestir.pesquisar(simuladorOperacaoInvestirId);
