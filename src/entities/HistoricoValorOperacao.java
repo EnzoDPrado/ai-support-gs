@@ -48,4 +48,14 @@ public class HistoricoValorOperacao {
     public void setValor(Double valor) {
         this.valor = valor;
     }
+
+    @Override
+    public String toString() {
+        return "HistoricoValorOperacao {" +
+                "id=" + id +
+                ", operacaoInvestirId=" + (operacaoInvestir != null ? operacaoInvestir.getId() : "null") +
+                ", dataRegistro=" + dataRegistro +
+                ", valor=" + valor +
+                '}';
+    }
 }
