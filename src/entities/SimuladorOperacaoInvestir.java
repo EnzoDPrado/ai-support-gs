@@ -73,4 +73,16 @@ public class SimuladorOperacaoInvestir{
     public void setSaldoFicticio(Double saldoFicticio) {
         this.saldoFicticio = saldoFicticio;
     }
+
+    @Override
+    public String toString() {
+        return "SimuladorOperacaoInvestir {" +
+                "id=" + id +
+                ", investidorId=" + (investidor != null ? investidor.getId() : "null") +
+                ", nomeSimulacao='" + nomeSimulacao + '\'' +
+                ", valorInvestidoSimulado=" + valorInvestidoSimulado +
+                ", alertaSimulacao=" + (alertaSimulacao ? "Sim" : "Não") +
+                ", saldoFicticio=" + saldoFicticio +
+                '}';
+    }
 }
