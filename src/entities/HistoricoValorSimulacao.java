@@ -48,4 +48,14 @@ public class HistoricoValorSimulacao {
     public void setValor(Double valor) {
         this.valor = valor;
     }
+
+    @Override
+    public String toString() {
+        return "HistoricoValorSimulacao {" +
+                "id=" + id +
+                ", simuladorOperacaoInvestirId=" + (simuladorOperacaoInvestir != null ? simuladorOperacaoInvestir.getId() : "null") +
+                ", dataRegistro=" + dataRegistro +
+                ", valor=" + valor +
+                '}';
+    }
 }

@@ -76,7 +76,7 @@ public class HistoricoValorSimulacaoDao {
 
 
     public void remover(long codigo) throws SQLException {
-        PreparedStatement stm = conexao.prepareStatement("DELETE from tb_historico_valor_simulacao where cd_simulador_operacao = ?");
+        PreparedStatement stm = conexao.prepareStatement("DELETE from tb_historico_valor_simulacao where cd_historico_valor_operacao = ?");
         stm.setLong(1, codigo);
         int linha = stm.executeUpdate();
         if (linha == 0)
