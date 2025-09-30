@@ -1,249 +1,234 @@
-import controllers.AlertaController;
-import controllers.CidadeController;
-import controllers.RefugioController;
-import controllers.UserController;
-import entities.Cidade;
+import usecases.endereco.*;
+import usecases.investidor.*;
+import usecases.operacaoinvestir.*;
+import usecases.historicovaloroperacao.*;
+import usecases.historicovalorsimulacao.*;
+import usecases.simuladoroperacaoinvestir.*;
 
 import java.util.List;
 import java.util.Scanner;
+
 public class Execute {
+
     public void execute() {
         Scanner scanner = new Scanner(System.in);
-        List<Integer> validOptions = List.of(1, 2, 3, 4, 5, 6);
-
-        System.out.println("-------------------------INSTRUÇÕES INICIAIS-------------------------------");
-        System.out.println("--- Crie primeiramente uma cidade para vincular com as demais entidades ---");
-        System.out.println("---------------------------------------------------------------------------");
+        List<Integer> validOptions = List.of(1, 2, 3, 4, 5, 6, 7);
 
         while (true) {
-            System.out.println("1 -- listagens");
-            System.out.println("2 -- cadastros");
-            System.out.println("3 -- atualizar");
-            System.out.println("4 -- buscar um");
-            System.out.println("5 -- deletar um");
-            System.out.println("6 -- sair");
-            try{
+            System.out.println("=== MENU PRINCIPAL ===");
+            System.out.println("1 -- Investidores");
+            System.out.println("2 -- Endereços");
+            System.out.println("3 -- Operações Investir");
+            System.out.println("4 -- Histórico Valor Operação");
+            System.out.println("5 -- Histórico Valor Simulação");
+            System.out.println("6 -- Simuladores");
+            System.out.println("7 -- Sair");
+
+            try {
                 Integer value = Integer.valueOf(scanner.nextLine());
                 this.validateOptions(validOptions, value);
 
-                switch (value){
-                    case 1:
-                        this.listFlux();
-                        break;
-                    case 2:
-                        this.createFlux();
-                        break;
-                    case 3:
-                        this.updateFlux();
-                        break;
-                    case 4:
-                        this.listOneFlux();
-                        break;
-                    case 5:
-                        this.deleteOneFlux();
-                        break;
-                    case 6:
-                        System.out.println("Encerrando aplicação");
+                switch (value) {
+                    case 1: this.menuEnderecos(); break;
+                    case 2: this.menuInvestidores(); break;
+                    case 3: this.menuOperacoesInvestir(); break;
+                    case 4: this.menuHistoricoOperacao(); break;
+                    case 5: this.menuHistoricoSimulacao(); break;
+                    case 6: this.menuSimuladores(); break;
+                    case 7:
+                        System.out.println("Encerrando aplicação...");
                         return;
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Opção inválida. Tente novamente.");
             }
         }
     }
 
-    private void deleteOneFlux(){
+    // ---------------- SUBMENUS ----------------
+
+    private void menuEnderecos() {
         Scanner scanner = new Scanner(System.in);
-        List<Integer> validOptions = List.of(1, 2, 3, 4, 5);
-        while(true){
-            System.out.println("--- FLUXO DE DELETAR UM ---");
-            System.out.println("1 -- user");
-            System.out.println("2 -- refugio");
-            System.out.println("3 -- cidade");
-            System.out.println("4 -- alerta");
-            System.out.println("5 -- voltar");
+        List<Integer> options = List.of(1, 2, 3, 4, 5, 6);
 
-            try{
-                Integer value = Integer.valueOf(scanner.nextLine());
-                this.validateOptions(validOptions, value);
+        while (true) {
+            System.out.println("--- MENU ENDEREÇOS ---");
+            System.out.println("1 -- Listar");
+            System.out.println("2 -- Criar");
+            System.out.println("3 -- Atualizar");
+            System.out.println("4 -- Pesquisar");
+            System.out.println("5 -- Remover");
+            System.out.println("6 -- Voltar");
 
-                switch (value){
-                    case 1:
-                        UserController.deletarUser();
-                        break;
-                    case 2:
-                        RefugioController.deletarRefugio();
-                        break;
-                    case 3:
-                        CidadeController.deletarCidade();
-                        break;
-                    case 4:
-                        AlertaController.deletarAlerta();
-                        break;
-                    case 5:
-                        return;
+            try {
+                int op = Integer.parseInt(scanner.nextLine());
+                this.validateOptions(options, op);
+                switch (op) {
+                    case 1: ListarEnderecosUseCase.execute(); break;
+                    case 2: CriarEnderecoUseCase.execute(); break;
+                    case 3: AtualizarEnderecoUseCase.execute(); break;
+                    case 4: PesquisarEnderecoUseCase.execute(); break;
+                    case 5: RemoverEnderecoUseCase.execute(); break;
+                    case 6: return;
                 }
-            }catch (Exception e){
-                System.out.println("Opção inválida. Tente novamente.");
+            } catch (Exception e) {
+                System.out.println("Opção inválida.");
             }
         }
     }
 
-    private void listOneFlux(){
+    private void menuInvestidores() {
         Scanner scanner = new Scanner(System.in);
-        List<Integer> validOptions = List.of(1, 2, 3, 4, 5);
-        while(true){
-            System.out.println("--- FLUXO DE BUSCAR UM ---");
-            System.out.println("1 -- user");
-            System.out.println("2 -- refugio");
-            System.out.println("3 -- cidade");
-            System.out.println("4 -- alerta");
-            System.out.println("5 -- voltar");
+        List<Integer> options = List.of(1, 2, 3, 4, 5, 6);
 
-            try{
-                Integer value = Integer.valueOf(scanner.nextLine());
-                this.validateOptions(validOptions, value);
+        while (true) {
+            System.out.println("--- MENU INVESTIDORES ---");
+            System.out.println("1 -- Listar");
+            System.out.println("2 -- Criar");
+            System.out.println("3 -- Atualizar");
+            System.out.println("4 -- Pesquisar");
+            System.out.println("5 -- Remover");
+            System.out.println("6 -- Voltar");
 
-                switch (value){
-                    case 1:
-                        UserController.buscarUser();
-                        break;
-                    case 2:
-                        RefugioController.buscarRefugio();
-                        break;
-                    case 3:
-                        CidadeController.listarCidadePorId();
-                        break;
-                    case 4:
-                        AlertaController.buscarAlerta();
-                        break;
-                    case 5:
-                        return;
+            try {
+                int op = Integer.parseInt(scanner.nextLine());
+                this.validateOptions(options, op);
+                switch (op) {
+                    case 1: ListarInvestidoresUseCase.execute(); break;
+                    case 2: CriarInvestidorUseCase.execute(); break;
+                    case 3: AtualizarInvestidorUseCase.execute(); break;
+                    case 4: PesquisarInvestidorUseCase.execute(); break;
+                    case 5: RemoverInvestidorUseCase.execute(); break;
+                    case 6: return;
                 }
-            }catch (Exception e){
-                System.out.println("Opção inválida. Tente novamente.");
+            } catch (Exception e) {
+                System.out.println("Opção inválida.");
             }
         }
     }
 
-    private void listFlux(){
+    private void menuOperacoesInvestir() {
         Scanner scanner = new Scanner(System.in);
-        List<Integer> validOptions = List.of(1, 2, 3, 4, 5);
-        while(true){
-            System.out.println("--- FLUXO DE LISTAGEM ---");
-            System.out.println("1 -- users");
-            System.out.println("2 -- refugios");
-            System.out.println("3 -- cidades");
-            System.out.println("4 -- alertas");
-            System.out.println("5 -- voltar");
+        List<Integer> options = List.of(1, 2, 3, 4, 5, 6);
 
-            try{
-                Integer value = Integer.valueOf(scanner.nextLine());
-                this.validateOptions(validOptions, value);
+        while (true) {
+            System.out.println("--- MENU OPERAÇÕES INVESTIR ---");
+            System.out.println("1 -- Listar");
+            System.out.println("2 -- Criar");
+            System.out.println("3 -- Atualizar");
+            System.out.println("4 -- Pesquisar");
+            System.out.println("5 -- Remover");
+            System.out.println("6 -- Voltar");
 
-                switch (value){
-                    case 1:
-                        UserController.listarUsers();
-                        break;
-                    case 2:
-                        RefugioController.listarRefugios();
-                        break;
-                    case 3:
-                        CidadeController.listarCidades();
-                        break;
-                    case 4:
-                        AlertaController.listarAlertas();
-                        break;
-                    case 5:
-                        return;
+            try {
+                int op = Integer.parseInt(scanner.nextLine());
+                this.validateOptions(options, op);
+                switch (op) {
+                    case 1: ListarOperacoesInvestirUseCase.execute(); break;
+                    case 2: CriarOperacaoInvestirUseCase.execute(); break;
+                    case 3: AtualizarOperacaoInvestirUseCase.execute(); break;
+                    case 4: PesquisarOperacaoInvestirUseCase.execute(); break;
+                    case 5: RemoverOperacaoInvestirUseCase.execute(); break;
+                    case 6: return;
                 }
-            }catch (Exception e){
-                System.out.println("Opção inválida. Tente novamente.");
+            } catch (Exception e) {
+                System.out.println("Opção inválida.");
             }
         }
     }
 
-    private void createFlux(){
+    private void menuHistoricoOperacao() {
         Scanner scanner = new Scanner(System.in);
-        List<Integer> validOptions = List.of(1, 2, 3, 4, 5);
-        while(true){
-            System.out.println("--- FLUXO DE CRIAÇÃO ---");
-            System.out.println("1 -- user");
-            System.out.println("2 -- refugio");
-            System.out.println("3 -- cidade");
-            System.out.println("4 -- alerta");
-            System.out.println("5 -- voltar");
+        List<Integer> options = List.of(1, 2, 3, 4, 5, 6);
 
-            try{
-                Integer value = Integer.valueOf(scanner.nextLine());
-                this.validateOptions(validOptions, value);
+        while (true) {
+            System.out.println("--- MENU HISTÓRICO VALOR OPERAÇÃO ---");
+            System.out.println("1 -- Listar");
+            System.out.println("2 -- Criar");
+            System.out.println("3 -- Atualizar");
+            System.out.println("4 -- Pesquisar");
+            System.out.println("5 -- Remover");
+            System.out.println("6 -- Voltar");
 
-                switch (value){
-                    case 1:
-                        UserController.adicionarUser();
-                        break;
-                    case 2:
-                        RefugioController.adicionarRefugio();
-                        break;
-                    case 3:
-                        CidadeController.criarCidade();
-                        break;
-                    case 4:
-                        AlertaController.adicionarAlerta();
-                        break;
-                    case 5:
-                        return;
+            try {
+                int op = Integer.parseInt(scanner.nextLine());
+                this.validateOptions(options, op);
+                switch (op) {
+                    case 1: ListarHistoricoValorOperacoesUseCase.execute(); break;
+                    case 2: CriarHistoricoValorOperacaoUseCase.execute(); break;
+                    case 3: AtualizarHistoricoValorOperacaoUseCase.execute(); break;
+                    case 4: PesquisarHistoricoValorOperacaoUseCase.execute(); break;
+                    case 5: RemoverHistoricoValorOperacaoUseCase.execute(); break;
+                    case 6: return;
                 }
-            }catch (Exception e){
-                System.out.println("Opção inválida. Tente novamente.");
+            } catch (Exception e) {
+                System.out.println("Opção inválida.");
             }
         }
     }
 
-    private void updateFlux(){
+    private void menuHistoricoSimulacao() {
         Scanner scanner = new Scanner(System.in);
-        List<Integer> validOptions = List.of(1, 2, 3, 4, 5);
-        while(true){
-            System.out.println("--- FLUXO DE ATUALIZAÇÃO ---");
-            System.out.println("1 -- users");
-            System.out.println("2 -- refugios");
-            System.out.println("3 -- cidades");
-            System.out.println("4 -- alertas");
-            System.out.println("5 -- voltar");
+        List<Integer> options = List.of(1, 2, 3, 4, 5, 6);
 
-            try{
-                Integer value = Integer.valueOf(scanner.nextLine());
-                this.validateOptions(validOptions, value);
+        while (true) {
+            System.out.println("--- MENU HISTÓRICO VALOR SIMULAÇÃO ---");
+            System.out.println("1 -- Listar");
+            System.out.println("2 -- Criar");
+            System.out.println("3 -- Atualizar");
+            System.out.println("4 -- Pesquisar");
+            System.out.println("5 -- Remover");
+            System.out.println("6 -- Voltar");
 
-                switch (value){
-                    case 1:
-                        UserController.atualizarUser();
-                        break;
-                    case 2:
-                        RefugioController.atualizarRefugio();
-                        break;
-                    case 3:
-                        CidadeController.atualizarCidade();
-                        break;
-                    case 4:
-                        AlertaController.atualizarAlerta();
-                        break;
-                    case 5:
-                        return;
+            try {
+                int op = Integer.parseInt(scanner.nextLine());
+                this.validateOptions(options, op);
+                switch (op) {
+                    case 1: ListarHistoricoValorSimulacoesUseCase.execute(); break;
+                    case 2: CriarHistoricoValorSimulacaoUseCase.execute(); break;
+                    case 3: AtualizarHistoricoValorSimulacaoUseCase.execute(); break;
+                    case 4: PesquisarHistoricoValorSimulacaoUseCase.execute(); break;
+                    case 5: RemoverHistoricoValorSimulacaoUseCase.execute(); break;
+                    case 6: return;
                 }
-            }catch (Exception e){
-                System.out.println("Opção inválida. Tente novamente.");
+            } catch (Exception e) {
+                System.out.println("Opção inválida.");
             }
         }
     }
 
+    private void menuSimuladores() {
+        Scanner scanner = new Scanner(System.in);
+        List<Integer> options = List.of(1, 2, 3, 4, 5, 6);
 
+        while (true) {
+            System.out.println("--- MENU SIMULADORES ---");
+            System.out.println("1 -- Listar");
+            System.out.println("2 -- Criar");
+            System.out.println("3 -- Atualizar");
+            System.out.println("4 -- Pesquisar");
+            System.out.println("5 -- Remover");
+            System.out.println("6 -- Voltar");
 
-    private void validateOptions(List<Integer> options, Integer value){
-        try{
-            if(!options.contains(value)) throw new Error("Valor invalido");
-        } catch (Exception e) {
-            System.out.println("Opção inválida. Tente novamente.");
+            try {
+                int op = Integer.parseInt(scanner.nextLine());
+                this.validateOptions(options, op);
+                switch (op) {
+                    case 1: ListarSimuladoresOperacaoInvestirUseCase.execute(); break;
+                    case 2: CriarSimuladorOperacaoInvestirUseCase.execute(); break;
+                    case 3: AtualizarSimuladorOperacaoInvestirUseCase.execute(); break;
+                    case 4: PesquisarSimuladorOperacaoInvestirUseCase.execute(); break;
+                    case 5: RemoverSimuladorOperacaoInvestirUseCase.execute(); break;
+                    case 6: return;
+                }
+            } catch (Exception e) {
+                System.out.println("Opção inválida.");
+            }
         }
+    }
+
+    // ---------------- VALIDATE ----------------
+    private void validateOptions(List<Integer> options, Integer value) {
+        if (!options.contains(value)) throw new IllegalArgumentException("Valor inválido");
     }
 }
