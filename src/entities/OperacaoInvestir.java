@@ -62,4 +62,16 @@ public class OperacaoInvestir{
     public void setAlerta(Boolean alerta) {
         this.alerta = alerta;
     }
+
+
+    @Override
+    public String toString() {
+        return "OperacaoInvestir {" +
+                "id=" + id +
+                ", investidorId=" + (investidor != null ? investidor.getId() : "null") +
+                ", nomeInvestimento='" + nomeInvestimento + '\'' +
+                ", valorInvestimentoInicial=" + valorInvestimentoInicial +
+                ", alerta=" + (alerta ? "Sim" : "Não") +
+                '}';
+    }
 }
