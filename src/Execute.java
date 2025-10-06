@@ -29,8 +29,8 @@ public class Execute {
                 this.validateOptions(validOptions, value);
 
                 switch (value) {
-                    case 1: this.menuEnderecos(); break;
-                    case 2: this.menuInvestidores(); break;
+                    case 1: this.menuInvestidores(); break;
+                    case 2: this.menuEnderecos(); break;
                     case 3: this.menuOperacoesInvestir(); break;
                     case 4: this.menuHistoricoOperacao(); break;
                     case 5: this.menuHistoricoSimulacao(); break;

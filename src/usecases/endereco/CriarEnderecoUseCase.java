@@ -41,8 +41,6 @@ public class CriarEnderecoUseCase {
             enderecoDao.fecharConexao();
 
             System.out.println("✅ Endereço cadastrado com sucesso!");
-            System.out.println(novoEndereco);
-
         } catch (SQLException e) {
             System.err.println("Erro ao cadastrar endereço: " + e.getMessage());
         } catch (Error e) {
