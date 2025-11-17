@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/patinhas-gui.iml" filepath="$PROJECT_DIR$/patinhas-gui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ai-map-backend.iml" filepath="$PROJECT_DIR$/ai-map-backend.iml" />
     </modules>
   </component>
 </project>

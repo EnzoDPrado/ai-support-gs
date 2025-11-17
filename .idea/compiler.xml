@@ -7,7 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="patinhas-GUI" />
-        <module name="patinhas-gui" />
+        <module name="ai-map-backend" />
       </profile>
     </annotationProcessing>
   </component>
