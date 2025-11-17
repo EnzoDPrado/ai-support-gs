@@ -1,9 +1,14 @@
 package resource;
 
 import dao.InvestidorDao;
-import entities.Investidor;
-import jakarta.ws.rs.*;
+import dto.investidor.CreateInvestidorInputDTO;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.*;
+import usecases.investidor.CriarInvestidorUseCase;
+
 import java.sql.SQLException;
 
 
@@ -12,15 +17,17 @@ import java.sql.SQLException;
 @Produces(MediaType.APPLICATION_JSON)
 public class InvestidorResource {
 
-    private final InvestidorDao investidorDao;
+    private final CriarInvestidorUseCase criarInvestidorUseCase;
 
     public InvestidorResource() throws SQLException {
-        investidorDao = new InvestidorDao();
+        criarInvestidorUseCase = new CriarInvestidorUseCase(new InvestidorDao());
     }
 
     @POST
-    public Response cadastrar(Investidor investidor, @Context UriInfo uriInfo) throws SQLException {
-        investidorDao.cadastrar(investidor);
+    public Response cadastrar(CreateInvestidorInputDTO investidorInput, @Context UriInfo uriInfo) throws SQLException {
+        final var investidor = investidorInput.toInvestidor();
+        criarInvestidorUseCase.execute(investidor);
+
         UriBuilder uri = uriInfo.getAbsolutePathBuilder();
         uri.path(String.valueOf(investidor.getId()));
         return Response.created(uri.build()).entity(investidor).build();
