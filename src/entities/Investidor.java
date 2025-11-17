@@ -9,6 +9,9 @@ public class Investidor {
     private Double saldo;
     private Date dataNasc;
 
+    public Investidor() {
+    }
+
     public Investidor(Long id, String cpf, Double saldo, Date dataNasc) {
         this.id = id;
         this.cpf = cpf;
@@ -21,6 +24,7 @@ public class Investidor {
         this.saldo = saldo;
         this.dataNasc = dataNasc;
     }
+
     public Long getId() {
         return id;
     }

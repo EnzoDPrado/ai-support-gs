@@ -24,14 +24,26 @@ public class InvestidorDao {
     }
 
     public void cadastrar(Investidor investidor) throws SQLException {
-        PreparedStatement stm = conexao.prepareStatement(
-                "INSERT INTO tb_investidor (cd_investidor, dt_nascimento, vl_cpf, vl_saldo) " +
-                        "VALUES (seq_investidor.nextval, ?, ?, ?)"
-        );
-        stm.setDate(1, Date.valueOf(investidor.getDataNasc().toLocalDate()));
-        stm.setString(2, investidor.getCpf());
-        stm.setDouble(3, investidor.getSaldo());
-        stm.executeUpdate();
+        String sql =
+                "BEGIN " +
+                        "   INSERT INTO tb_investidor (cd_investidor, dt_nascimento, vl_cpf, vl_saldo) " +
+                        "   VALUES (seq_investidor.nextval, ?, ?, ?) " +
+                        "   RETURNING cd_investidor INTO ?; " +
+                        "END;";
+
+        CallableStatement cs = conexao.prepareCall(sql);
+
+        cs.setDate(1, Date.valueOf(investidor.getDataNasc().toLocalDate()));
+        cs.setString(2, investidor.getCpf());
+        cs.setDouble(3, investidor.getSaldo());
+
+        cs.registerOutParameter(4, java.sql.Types.INTEGER);
+
+        cs.execute();
+
+        Long generatedId = cs.getLong(4);
+
+        investidor.setId(generatedId);
     }
 
     public Investidor pesquisar(long codigo) throws SQLException {
