@@ -19,7 +19,7 @@ public class ListarUsuarioPorIdUseCase {
     public User execute(Long id) throws SQLException {
         User user = this.userDao.pesquisar(id).orElseThrow(() ->
                 new WebApplicationException(Response.status(Response.Status.BAD_REQUEST)
-                        .entity(new ApiError("Credenciais Invalidas"))
+                        .entity(new ApiError("Usuário não encontrado!"))
                         .type(MediaType.APPLICATION_JSON)
                         .build()));
 
