@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class UserDao {
 
-    private Connection conexao;
+    private final Connection conexao;
 
     public UserDao() throws SQLException {
         this.conexao = DatabaseConnection.getConnection();
@@ -50,19 +50,19 @@ public class UserDao {
         user.setId(generatedId);
     }
 
-    public User pesquisar(String id) throws SQLException {
+    public Optional<User> pesquisar(Long id) throws SQLException {
 
         PreparedStatement stm =
                 conexao.prepareStatement("SELECT * FROM tb_users WHERE cd_user = ?");
 
-        stm.setString(1, id);
+        stm.setLong(1, id);
 
         ResultSet result = stm.executeQuery();
-        if (!result.next()) {
-            throw new Error("Usuário não encontrado");
+        if (result.next()) {
+            return Optional.of(parseUser(result));
         }
 
-        return parseUser(result);
+        return Optional.empty();
     }
 
     public Optional<User> pesquisarPorEmail(String email) throws SQLException {
@@ -70,6 +70,22 @@ public class UserDao {
                 conexao.prepareStatement("SELECT * FROM tb_users WHERE email = ?");
 
         stm.setString(1, email);
+
+        ResultSet result = stm.executeQuery();
+
+        if (result.next()) {
+            return Optional.of(parseUser(result));
+        }
+
+        return Optional.empty();
+    }
+
+    public Optional<User> pesquisarPorEmailSenha(String email, String senha) throws SQLException {
+        PreparedStatement stm =
+                conexao.prepareStatement("SELECT * FROM tb_users WHERE email = ? and  password = ?");
+
+        stm.setString(1, email);
+        stm.setString(2, senha);
 
         ResultSet result = stm.executeQuery();
 

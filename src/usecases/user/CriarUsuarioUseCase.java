@@ -31,6 +31,7 @@ public class CriarUsuarioUseCase {
 
         User user = input.toUser();
         this.userDao.cadastrar(user);
+        userDao.fecharConexao();
 
         return user;
     }
