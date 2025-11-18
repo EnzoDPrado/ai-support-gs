@@ -80,6 +80,22 @@ public class UserDao {
         return Optional.empty();
     }
 
+    public Optional<User> pesquisarPorEmailSenha(String email, String senha) throws SQLException {
+        PreparedStatement stm =
+                conexao.prepareStatement("SELECT * FROM tb_users WHERE email = ? and  password = ?");
+
+        stm.setString(1, email);
+        stm.setString(2, senha);
+
+        ResultSet result = stm.executeQuery();
+
+        if (result.next()) {
+            return Optional.of(parseUser(result));
+        }
+
+        return Optional.empty();
+    }
+
     public List<User> listar() throws SQLException {
         PreparedStatement stm = conexao.prepareStatement("SELECT * FROM tb_users");
         ResultSet result = stm.executeQuery();

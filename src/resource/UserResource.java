@@ -2,12 +2,14 @@ package resource;
 
 import dao.UserDao;
 import dto.user.CriarUsuarioInputDTO;
+import dto.user.LogarUsuarioInputDTO;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.*;
 import usecases.user.CriarUsuarioUseCase;
+import usecases.user.LogarUsuarioUseCase;
 
 import java.sql.SQLException;
 
@@ -18,15 +20,27 @@ import java.sql.SQLException;
 public class UserResource {
 
     private final CriarUsuarioUseCase criarUsuarioUseCase;
+    private final LogarUsuarioUseCase logarUsuarioUseCase;
 
     public UserResource() throws SQLException {
         criarUsuarioUseCase = new CriarUsuarioUseCase(new UserDao());
+        logarUsuarioUseCase = new LogarUsuarioUseCase(new UserDao());
     }
 
     @POST
     @Path("/cadastrar")
     public Response cadastrar(CriarUsuarioInputDTO input, @Context UriInfo uriInfo) throws SQLException {
         final var user = criarUsuarioUseCase.execute(input);
+
+        UriBuilder uri = uriInfo.getAbsolutePathBuilder();
+        uri.path(String.valueOf(user.getId()));
+        return Response.created(uri.build()).entity(user).build();
+    }
+
+    @POST
+    @Path("/logar")
+    public Response logar(LogarUsuarioInputDTO input, @Context UriInfo uriInfo) throws SQLException {
+        final var user = logarUsuarioUseCase.execute(input);
 
         UriBuilder uri = uriInfo.getAbsolutePathBuilder();
         uri.path(String.valueOf(user.getId()));
