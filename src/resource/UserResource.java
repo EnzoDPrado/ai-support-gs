@@ -1,10 +1,12 @@
 package resource;
 
 import dao.UserDao;
+import dto.user.AtualizarUsuarioInputDTO;
 import dto.user.CriarUsuarioInputDTO;
 import dto.user.LogarUsuarioInputDTO;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
+import usecases.user.AtualizarUsuarioUseCase;
 import usecases.user.CriarUsuarioUseCase;
 import usecases.user.ListarUsuarioPorIdUseCase;
 import usecases.user.LogarUsuarioUseCase;
@@ -20,11 +22,13 @@ public class UserResource {
     private final CriarUsuarioUseCase criarUsuarioUseCase;
     private final LogarUsuarioUseCase logarUsuarioUseCase;
     private final ListarUsuarioPorIdUseCase listarUsuarioPorIdUseCase;
+    private final AtualizarUsuarioUseCase atualizarUsuarioUseCase;
 
     public UserResource() throws SQLException {
         criarUsuarioUseCase = new CriarUsuarioUseCase(new UserDao());
         logarUsuarioUseCase = new LogarUsuarioUseCase(new UserDao());
         listarUsuarioPorIdUseCase = new ListarUsuarioPorIdUseCase(new UserDao());
+        atualizarUsuarioUseCase = new AtualizarUsuarioUseCase(new UserDao());
     }
 
     @POST
@@ -55,5 +59,11 @@ public class UserResource {
         UriBuilder uri = uriInfo.getAbsolutePathBuilder();
         uri.path(String.valueOf(user.getId()));
         return Response.created(uri.build()).entity(user).build();
+    }
+
+    @PUT
+    @Path("/{id}")
+    public void atualizar(@PathParam("id") Long id, AtualizarUsuarioInputDTO input, @Context UriInfo uriInfo) throws SQLException {
+        this.atualizarUsuarioUseCase.execute(input, id);
     }
 }

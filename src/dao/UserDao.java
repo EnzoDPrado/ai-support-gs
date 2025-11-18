@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class UserDao {
 
-    private Connection conexao;
+    private final Connection conexao;
 
     public UserDao() throws SQLException {
         this.conexao = DatabaseConnection.getConnection();
