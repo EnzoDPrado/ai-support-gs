@@ -21,7 +21,11 @@ public class LogarUsuarioUseCase {
         String email = input.email();
         String senha = input.password();
 
-        return this.getUser(email, senha);
+        User user = this.getUser(email, senha);
+
+        userDao.fecharConexao();
+
+        return user;
     }
 
     private User getUser(String email, String senha) throws SQLException {
