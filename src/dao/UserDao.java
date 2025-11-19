@@ -1,6 +1,5 @@
 package dao;
 
-import entities.Investidor;
 import entities.User;
 import infra.DatabaseConnection;
 
