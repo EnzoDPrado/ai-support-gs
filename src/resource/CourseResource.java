@@ -8,6 +8,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
 import usecases.curso.AtualizarCursoUseCase;
 import usecases.curso.CriarCursoUseCase;
+import usecases.curso.DeletarCursoUseCase;
 import usecases.curso.ListarCursosPorUsuarioUseCase;
 
 import java.sql.SQLException;
@@ -21,11 +22,13 @@ public class CourseResource {
     private final CriarCursoUseCase criarCursoUseCase;
     private final ListarCursosPorUsuarioUseCase listarCursosPorUsuarioUseCase;
     private final AtualizarCursoUseCase atualizarCursoUseCase;
+    private final DeletarCursoUseCase deletarCursoUseCase;
 
     public CourseResource() throws SQLException {
         criarCursoUseCase = new CriarCursoUseCase(new CourseDao(), new UserDao());
         listarCursosPorUsuarioUseCase = new ListarCursosPorUsuarioUseCase(new CourseDao(), new UserDao());
         atualizarCursoUseCase = new AtualizarCursoUseCase(new CourseDao());
+        deletarCursoUseCase = new DeletarCursoUseCase(new CourseDao());
     }
 
     @POST
@@ -52,6 +55,13 @@ public class CourseResource {
     @Path("/{id}")
     public Response atualizar(@PathParam("id") Long id, AtualizarCursoInputDTO input) throws SQLException {
         this.atualizarCursoUseCase.execute(input, id);
+        return Response.noContent().build();
+    }
+
+    @DELETE
+    @Path("/{id}")
+    public Response deletar(@PathParam("id") Long id) throws SQLException {
+        this.deletarCursoUseCase.execute(id);
         return Response.noContent().build();
     }
 }

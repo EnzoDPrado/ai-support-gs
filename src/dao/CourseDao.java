@@ -129,12 +129,12 @@ public class CourseDao {
         this.fecharConexao();
     }
 
-    public void remover(String id) throws SQLException {
+    public void remover(Long id) throws SQLException {
 
         PreparedStatement stm =
                 conexao.prepareStatement("DELETE FROM tb_courses WHERE cd_courses = ?");
 
-        stm.setString(1, id);
+        stm.setLong(1, id);
 
         int linhas = stm.executeUpdate();
 
