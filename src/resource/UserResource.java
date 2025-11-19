@@ -63,7 +63,9 @@ public class UserResource {
 
     @PUT
     @Path("/{id}")
-    public void atualizar(@PathParam("id") Long id, AtualizarUsuarioInputDTO input, @Context UriInfo uriInfo) throws SQLException {
+    public Response atualizar(@PathParam("id") Long id, AtualizarUsuarioInputDTO input) throws SQLException {
         this.atualizarUsuarioUseCase.execute(input, id);
+
+        return Response.noContent().build();
     }
 }

@@ -2,9 +2,11 @@ package resource;
 
 import dao.CourseDao;
 import dao.UserDao;
+import dto.curso.AtualizarCursoInputDTO;
 import dto.curso.CriarCursoInputDTO;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
+import usecases.curso.AtualizarCursoUseCase;
 import usecases.curso.CriarCursoUseCase;
 import usecases.curso.ListarCursosPorUsuarioUseCase;
 
@@ -18,10 +20,12 @@ public class CourseResource {
 
     private final CriarCursoUseCase criarCursoUseCase;
     private final ListarCursosPorUsuarioUseCase listarCursosPorUsuarioUseCase;
+    private final AtualizarCursoUseCase atualizarCursoUseCase;
 
     public CourseResource() throws SQLException {
         criarCursoUseCase = new CriarCursoUseCase(new CourseDao(), new UserDao());
         listarCursosPorUsuarioUseCase = new ListarCursosPorUsuarioUseCase(new CourseDao(), new UserDao());
+        atualizarCursoUseCase = new AtualizarCursoUseCase(new CourseDao());
     }
 
     @POST
@@ -42,5 +46,12 @@ public class CourseResource {
         final var courses = this.listarCursosPorUsuarioUseCase.execute(id);
 
         return Response.ok(uri.build()).entity(courses).build();
+    }
+
+    @PUT
+    @Path("/{id}")
+    public Response atualizar(@PathParam("id") Long id, AtualizarCursoInputDTO input) throws SQLException {
+        this.atualizarCursoUseCase.execute(input, id);
+        return Response.noContent().build();
     }
 }
