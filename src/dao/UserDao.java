@@ -48,6 +48,8 @@ public class UserDao {
         Long generatedId = cs.getLong(4);
 
         user.setId(generatedId);
+
+        this.fecharConexao();
     }
 
     public Optional<User> pesquisar(Long id) throws SQLException {
@@ -62,6 +64,7 @@ public class UserDao {
             return Optional.of(parseUser(result));
         }
 
+        this.fecharConexao();
         return Optional.empty();
     }
 
@@ -77,6 +80,7 @@ public class UserDao {
             return Optional.of(parseUser(result));
         }
 
+        this.fecharConexao();
         return Optional.empty();
     }
 
@@ -93,6 +97,7 @@ public class UserDao {
             return Optional.of(parseUser(result));
         }
 
+        this.fecharConexao();
         return Optional.empty();
     }
 
@@ -106,6 +111,7 @@ public class UserDao {
             lista.add(parseUser(result));
         }
 
+        this.fecharConexao();
         return lista;
     }
 
@@ -123,6 +129,8 @@ public class UserDao {
         if (linhas == 0) {
             throw new Error("Usuário não encontrado para atualização");
         }
+
+        this.fecharConexao();
     }
 
     public void remover(String id) throws SQLException {
@@ -135,6 +143,8 @@ public class UserDao {
         if (linhas == 0) {
             throw new Error("Usuário não encontrado para remoção");
         }
+
+        this.fecharConexao();
     }
 
     public void fecharConexao() throws SQLException {
