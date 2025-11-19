@@ -33,14 +33,13 @@ public class SoftSkillsDao {
                         "   SELECT seq_tb_soft_skils.CURRVAL INTO ? FROM dual; " +
                         "END;";
 
-        // Usa try-with-resources para fechar o CallableStatement automaticamente
         try (CallableStatement cs = conexao.prepareCall(sql)) {
-            // 1 -> cd_user (NUMBER)
+
             cs.setLong(1, soft.getCdUser());
-            // 2 -> name
+
             cs.setString(2, soft.getName());
 
-            // 3 -> OUT parameter para retornar o generated id
+
             cs.registerOutParameter(3, Types.NUMERIC);
 
             cs.execute();
@@ -48,7 +47,6 @@ public class SoftSkillsDao {
             String generatedId = cs.getString(3);
             soft.setId(generatedId);
         }
-        // NÃO feche a conexão aqui (feche no usecase) — se você preferir feche, faça fora do DAO
     }
 
     public Optional<SoftSkills> findById(String id) throws SQLException {

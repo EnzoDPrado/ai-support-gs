@@ -49,8 +49,6 @@ public class CourseDao {
         Long generatedId = cs.getLong(5);
 
         course.setId(generatedId);
-
-        this.fecharConexao();
     }
 
     public Optional<Course> pesquisar(Long id) throws SQLException {
@@ -66,8 +64,6 @@ public class CourseDao {
             return Optional.of(parseCourse(result));
         }
 
-
-        this.fecharConexao();
         return Optional.empty();
     }
 
@@ -83,8 +79,6 @@ public class CourseDao {
             lista.add(parseCourse(result));
         }
 
-
-        this.fecharConexao();
         return lista;
     }
 
@@ -102,7 +96,6 @@ public class CourseDao {
             lista.add(parseCourse(result));
         }
 
-        this.fecharConexao();
         return lista;
     }
 
@@ -125,8 +118,6 @@ public class CourseDao {
         if (linhas == 0) {
             throw new Error("Curso não encontrado para atualização");
         }
-
-        this.fecharConexao();
     }
 
     public void remover(Long id) throws SQLException {
@@ -141,8 +132,6 @@ public class CourseDao {
         if (linhas == 0) {
             throw new Error("Curso não encontrado para remoção");
         }
-
-        this.fecharConexao();
     }
 
     public void fecharConexao() throws SQLException {

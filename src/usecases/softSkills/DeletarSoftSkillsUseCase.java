@@ -18,7 +18,6 @@ public class DeletarSoftSkillsUseCase {
     }
 
     public void execute(String id) throws SQLException {
-        // verifica existência antes de tentar deletar (para retornar 404 amigável)
         var existente = dao.findById(id);
         if (existente.isEmpty()) {
             throw new WebApplicationException(

@@ -32,7 +32,6 @@ public class SoftSkillsResource {
         this.deletarSoftSkillUseCase = new DeletarSoftSkillsUseCase(dao);
     }
 
-    // POST - Criar SoftSkill
     @POST
     @Path("/cadastrar")
     public Response cadastrar(CriarSoftSkillInputDTO input, @Context UriInfo uriInfo) throws SQLException {
@@ -44,14 +43,12 @@ public class SoftSkillsResource {
         return Response.created(uri.build()).entity(output).build();
     }
 
-    // GET - Listar todas
     @GET
     public Response listarTodos() throws SQLException {
         List<SoftSkillOutputDTO> lista = listarSoftSkillsUseCase.execute();
         return Response.ok(lista).build();
     }
 
-    // PUT - Atualizar
     @PUT
     @Path("/{id}")
     public Response atualizar(
@@ -63,7 +60,6 @@ public class SoftSkillsResource {
         return Response.ok(atualizado).build();
     }
 
-    // DELETE - Deletar
     @DELETE
     @Path("/{id}")
     public Response deletar(@PathParam("id") String id) throws SQLException {

@@ -21,10 +21,10 @@ public class CriarSoftSkillsUseCase {
 
     public SoftSkillOutputDTO execute(CriarSoftSkillInputDTO input) throws SQLException {
 
-        // converter cdUser do DTO (String) para Long
+
         Long userId = Long.valueOf(input.cdUser());
 
-        // valida se usuário existe
+
         UserDao userDao = new UserDao();
         try {
             var u = userDao.pesquisar(userId);
@@ -40,7 +40,7 @@ public class CriarSoftSkillsUseCase {
             userDao.fecharConexao();
         }
 
-        SoftSkills soft = input.toSoftSkill(); // cdUser ainda será String
+        SoftSkills soft = input.toSoftSkill();
         dao.create(soft);
         dao.fecharConexao();
 
