@@ -1,4 +1,4 @@
-# Backend AI MAP - GLOBAL SOLUTION 
+# Backend AI SUPPORT - GLOBAL SOLUTION 
 
 ## Crie as seguintes tabelas no seu banco da fiap
 
