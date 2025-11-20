@@ -33,7 +33,7 @@ public class CriarRoadMapUseCase {
     }
 
     private String generatedTitle(Long userId) {
-        return String.format("Generated for %s at %s", userId, LocalDateTime.now());
+        return String.format("Generated for user: %s - at %s", userId, LocalDateTime.now());
     }
 
     private void validateUser(Long id) throws SQLException {

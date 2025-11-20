@@ -15,6 +15,7 @@ public class RoadMapDao {
         roadMap.setId(result.getLong("cd_road_map"));
         roadMap.setUserId(result.getLong("cd_user"));
         roadMap.setDescription(result.getString("description"));
+        roadMap.setTitle(result.getString("title"));
         return roadMap;
     }
 
@@ -22,8 +23,8 @@ public class RoadMapDao {
 
         String sql =
                 "BEGIN " +
-                        "   INSERT INTO tb_road_map (cd_road_map, cd_user, description) " +
-                        "   VALUES (seq_tb_road_map.nextval, ?, ?) " +
+                        "   INSERT INTO tb_road_map (cd_road_map, cd_user, description, title) " +
+                        "   VALUES (seq_tb_road_map.nextval, ?, ?, ?) " +
                         "   RETURNING cd_road_map INTO ?; " +
                         "END;";
 
@@ -32,11 +33,12 @@ public class RoadMapDao {
 
             cs.setLong(1, roadMap.getUserId());
             cs.setString(2, roadMap.getDescription());
-            cs.registerOutParameter(3, Types.VARCHAR);
+            cs.setString(3, roadMap.getTitle());
+            cs.registerOutParameter(4, Types.VARCHAR);
 
             cs.execute();
 
-            roadMap.setId(cs.getLong(3));
+            roadMap.setId(cs.getLong(4));
         }
     }
 
@@ -102,7 +104,7 @@ public class RoadMapDao {
 
         String sql =
                 "UPDATE tb_road_map " +
-                        "SET cd_user = ?, description = ? " +
+                        "SET cd_user = ?, description = ?, title = ? " +
                         "WHERE cd_road_map = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -110,7 +112,8 @@ public class RoadMapDao {
 
             stm.setLong(1, roadMap.getUserId());
             stm.setString(2, roadMap.getDescription());
-            stm.setLong(3, roadMap.getId());
+            stm.setString(3, roadMap.getTitle());
+            stm.setLong(4, roadMap.getId());
 
             int linhas = stm.executeUpdate();
 
