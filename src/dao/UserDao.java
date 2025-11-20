@@ -124,11 +124,11 @@ public class UserDao {
         }
     }
 
-    public void remover(String id) throws SQLException {
+    public void remover(Long id) throws SQLException {
         PreparedStatement stm =
                 conexao.prepareStatement("DELETE FROM tb_users WHERE cd_user = ?");
 
-        stm.setString(1, id);
+        stm.setLong(1, id);
 
         int linhas = stm.executeUpdate();
         if (linhas == 0) {

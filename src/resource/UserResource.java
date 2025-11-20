@@ -6,10 +6,7 @@ import dto.user.CriarUsuarioInputDTO;
 import dto.user.LogarUsuarioInputDTO;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
-import usecases.user.AtualizarUsuarioUseCase;
-import usecases.user.CriarUsuarioUseCase;
-import usecases.user.ListarUsuarioPorIdUseCase;
-import usecases.user.LogarUsuarioUseCase;
+import usecases.user.*;
 
 import java.sql.SQLException;
 
@@ -23,12 +20,14 @@ public class UserResource {
     private final LogarUsuarioUseCase logarUsuarioUseCase;
     private final ListarUsuarioPorIdUseCase listarUsuarioPorIdUseCase;
     private final AtualizarUsuarioUseCase atualizarUsuarioUseCase;
+    private final DeletarUsuarioPorIdUseCase deletarUsuarioPorIdUseCase;
 
     public UserResource() throws SQLException {
         criarUsuarioUseCase = new CriarUsuarioUseCase(new UserDao());
         logarUsuarioUseCase = new LogarUsuarioUseCase(new UserDao());
         listarUsuarioPorIdUseCase = new ListarUsuarioPorIdUseCase(new UserDao());
         atualizarUsuarioUseCase = new AtualizarUsuarioUseCase(new UserDao());
+        deletarUsuarioPorIdUseCase = new DeletarUsuarioPorIdUseCase(new UserDao());
     }
 
     @POST
@@ -65,6 +64,14 @@ public class UserResource {
     @Path("/{id}")
     public Response atualizar(@PathParam("id") Long id, AtualizarUsuarioInputDTO input) throws SQLException {
         this.atualizarUsuarioUseCase.execute(input, id);
+
+        return Response.noContent().build();
+    }
+
+    @DELETE
+    @Path("/{id}")
+    public Response deletar(@PathParam("id") Long id) throws SQLException {
+        this.deletarUsuarioPorIdUseCase.execute(id);
 
         return Response.noContent().build();
     }
